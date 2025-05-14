@@ -6,81 +6,83 @@ import {
   ScrollRestoration,
   Outlet,
 } from "react-router-dom";
-import Footer from "./components/Footer";
-import FooterBottom from "./components/FooterBottom";
-import Header from "./components/Header";
-import HeaderBottom from "./components/HeaderBottom";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
-import Home from "./pages/Home";
-import NewPage from "./pages/other/Home";
-import Management from "./pages/other/Management";
+import Home from "./pages/HomePage";
 import Service from "./pages/Service";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
+import Plats from "./pages/Plats";
+import Boissons from "./pages/Boisssons";
+import Supplements from "./pages/Supplements";
+import Categories from "./pages/CategoriesPage";
+import CategoryDetail from "./pages/CategoryDetailPage";
+import ProductDetail from "./pages/ProductDetailPage";
+import Cart from "./pages/CartPage";
+import Checkout from "./pages/Checkout";
+import DeliveryDetails from "./pages/DeliveryDetailsPage";
+// import QRCodePage from "./pages/QRCodePage";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
-import CreateTest from "./pages/CreateTest";
-import AnswerTest from "./pages/AnswerTest";
-import Student from "./pages/Student";
-import Professor from "./pages/Prof";
-import Profile from "./pages/Profile";
 
-const Layout = () => {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <ToastContainer
-        position="top-right"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
-      <Header />
-      <HeaderBottom />
-      <ScrollRestoration />
-      <div className="flex-grow">
-        <Outlet />
-      </div>
-      <Footer />
-      <FooterBottom />
+const Layout = () => (
+  <div className="flex flex-col min-h-screen">
+    <ToastContainer
+      position="top-right"
+      autoClose={1000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="colored"
+    />
+    <ScrollRestoration />
+    <div className="flex-grow">
+      <Outlet />
     </div>
-  );
-};
+  </div>
+);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-
         <Route path="/service" element={<Service />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/createTest" element={<CreateTest />} />
-        <Route path="/AnswerTest" element={<AnswerTest />} />
-        <Route path="/student" element={<Student />} />
-        <Route path="/prof" element={<Professor />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/categories" element={<Categories />} />
+        <Route path="/categories/:id" element={<CategoryDetail />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/delivery" element={<DeliveryDetails />} />
+        <Route path="/plats" element={<Plats />} />
+        <Route path="/boissons" element={<Boissons />} />
+        <Route path="/supplements" element={<Supplements />} />
+
+        {/* <Route path="/qr" element={<QRCodePage />} /> */}
         <Route path="*" element={<NotFound />} />
       </Route>
-      <Route path="/signup" element={<SignUp />}></Route>
-      <Route path="/newPage" element={<NewPage />}></Route>
-      <Route path="/management" element={<Management />}></Route>
-      <Route path="/signin" element={<SignIn />}></Route>
+
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/signin" element={<SignIn />} />
     </Route>
   )
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <RouterProvider router={router} fallbackElement={<div>Loading...</div>} />
+  );
 }
 
 export default App;

@@ -71,3 +71,6 @@ img {
 }
 
 /*                    zasd*/
+.input {
+  @apply border rounded-lg px-4 py-2 w-full outline-none focus:ring-2 focus:ring-red-400;
+}
