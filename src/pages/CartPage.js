@@ -1,15 +1,41 @@
 import React from "react";
 import MainLayout from "../components/MainLayout";
 import { useCart } from "../context/CartContext";
+import defaultImage from "../assets/user.png";
+// import sandwichsImg from "../assets/sandwish.jpg";
+// import tacosImg from "../assets/tacos.jpeg";
+// import burgersImg from "../assets/Burger.png";
+// import platsImg from "../assets/plats.jpg";
+// import pizzasImg from "../assets/pizza.jpg";
+// import patesImg from "../assets/pates.webp";
+// import saladesImg from "../assets/salades.png";
+// import menusImg from "../assets/kids.jpg";
+// import boissonsImg from "../assets/boissons.png";
+// import supplementsImg from "../assets/supplements.jpg";
 
 export default function Cart() {
+  // const categoryImages = {
+  //   sandwichs: sandwichsImg,
+  //   tacos: tacosImg,
+  //   burgers: burgersImg,
+  //   plats: platsImg,
+  //   pizzas: pizzasImg,
+  //   pates: patesImg,
+  //   salades: saladesImg,
+  //   menus: menusImg,
+  //   boissons: boissonsImg,
+  //   supplements: supplementsImg,
+  // };
+
   const { cart, removeFromCart, increaseQuantity, decreaseQuantity } =
     useCart();
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const defaultImage = "https://via.placeholder.com/64?text=Produit";
+  const getItemImage = (item) => {
+    return item.image || defaultImage;
+  };
 
   return (
     <MainLayout>
@@ -30,7 +56,7 @@ export default function Cart() {
                 className="flex flex-col sm:flex-row items-center bg-white rounded-2xl shadow-lg p-4 hover:shadow-xl transition-shadow"
               >
                 <img
-                  src={item.image || defaultImage}
+                  src={getItemImage(item)}
                   alt={item.name}
                   className="w-20 h-20 object-cover rounded-xl shadow-md"
                 />
