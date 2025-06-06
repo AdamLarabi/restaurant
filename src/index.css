@@ -70,6 +70,20 @@ img {
   color: #0663b4;
 }
 
+/* Ajoute ceci dans index.css */
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(197, 48, 34, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 16px 8px rgba(218, 46, 27, 0.25);
+  }
+}
+.group-hover\:animate-pulse-glow:hover {
+  animation: pulse-glow 1s infinite;
+}
+
 /*                    zasd*/
 .input {
   @apply border rounded-lg px-4 py-2 w-full outline-none focus:ring-2 focus:ring-red-400;

@@ -7,10 +7,20 @@ export default function WhatsAppButton({ phone }) {
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-10 right-5 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all"
+      className="fixed bottom-40 right-4 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all"
+      aria-label="Contactez-nous sur WhatsApp"
     >
-      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M20.5 3.5a11.41 11.41 0 0 0-16.15 0C1.73 6.18.9 9.69 2.1 12.83L.5 21.5l8.84-2.37a11.5 11.5 0 0 0 11.16-4.28 11.41 11.41 0 0 0 0-11.35zM12 20a9.27 9.27 0 0 1-4.67-1.27l-.34-.2-5.25 1.4 1.4-5.25-.2-.34a9.26 9.26 0 0 1 1.27-11.53 9.28 9.28 0 0 1 13.1 13.1A9.27 9.27 0 0 1 12 20z" />
+      <svg
+        className="w-7 h-7"
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="16" cy="16" r="16" fill="#25D366" />
+        <path
+          d="M22.7 9.3A8.6 8.6 0 0 0 9.3 22.7l-1.1 4.1a1 1 0 0 0 1.2 1.2l4.1-1.1A8.6 8.6 0 1 0 22.7 9.3Zm-6.7 13.1a7.1 7.1 0 0 1-3.6-1l-.3-.2-2.2.6.6-2.2-.2-.3a7.1 7.1 0 1 1 5.7 3.1Zm3.9-5.3c-.2-.1-1.2-.6-1.4-.7-.2-.1-.3-.1-.5.1-.1.1-.5.7-.6.8-.1.1-.2.2-.4.1-.2-.1-.8-.3-1.5-1-.6-.6-1.1-1.3-1.2-1.5-.1-.2 0-.3.1-.4.1-.1.2-.2.3-.3.1-.1.1-.2.2-.3 0-.1 0-.2 0-.3 0-.1-.2-.9-.4-1.2-.1-.3-.3-.3-.5-.3h-.4c-.1 0-.3 0-.4.2-.1.1-.6.6-.6 1.5 0 .9.6 1.8.7 1.9.1.1 1.2 2 3 2.7.5.2.9.3 1.2.2.4-.1.7-.5.8-.7.1-.2.1-.4.1-.5 0-.1-.1-.2-.3-.3Z"
+          fill="#fff"
+        />
       </svg>
     </a>
   );

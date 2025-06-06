@@ -15,11 +15,15 @@ export default function Navbar() {
   return (
     <div className="shadow-md w-full top-0 left-0 bg-white fixed z-50">
       <div className="md:flex items-center justify-between py-4 px-7 md:px-10">
-        <div className="font-bold text-2xl cursor-pointer flex items-center text-gray-800">
+        <div
+          className="font-bold text-2xl cursor-pointer flex items-center text-gray-800"
+          onClick={() => navigate("/")}
+          style={{ userSelect: "none" }}
+        >
           <span className="text-3xl text-red-500 mr-1 pt-1">
             <FaHamburger />
           </span>
-          SnackApp
+          Relish Fast Food
         </div>
 
         <div

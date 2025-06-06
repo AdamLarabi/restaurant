@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import MainLayout from "../components/MainLayout";
 import { useCart } from "../context/CartContext";
-import defaultImage from "../assets/user.png";
+// import defaultImage from `${process.env.PUBLIC_URL}/assets/emogiesnack.png`;
 // import sandwichsImg from "../assets/sandwish.jpg";
 // import tacosImg from "../assets/tacos.jpeg";
 // import burgersImg from "../assets/Burger.png";
@@ -34,8 +34,10 @@ export default function Cart() {
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   const getItemImage = (item) => {
-    return item.image || defaultImage;
+    return item.image || `${process.env.PUBLIC_URL}/emogiesnack.png`;
   };
+
+  const [confirmItem, setConfirmItem] = useState(null);
 
   return (
     <MainLayout>
@@ -98,13 +100,8 @@ export default function Cart() {
                 </div>
 
                 <button
-                  onClick={() => {
-                    if (window.confirm(`Supprimer ${item.name} du panier ?`)) {
-                      removeFromCart(item.id);
-                    }
-                  }}
+                  onClick={() => setConfirmItem(item)}
                   className="mt-6 sm:mt-0 sm:ml-6 text-red-600 hover:text-red-800 font-semibold transition text-base sm:text-lg"
-                  aria-label={`Supprimer ${item.name}`}
                 >
                   Supprimer
                 </button>
@@ -130,6 +127,34 @@ export default function Cart() {
               Passer la commande
             </button>
           </div>
+          {confirmItem && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white p-6 rounded shadow-lg w-80 text-center">
+                <p className="text-lg font-semibold mb-4">
+                  Supprimer{" "}
+                  <span className="text-red-600">{confirmItem.name}</span> du
+                  panier ?
+                </p>
+                <div className="flex justify-center space-x-4">
+                  <button
+                    onClick={() => {
+                      removeFromCart(confirmItem.id);
+                      setConfirmItem(null);
+                    }}
+                    className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+                  >
+                    Supprimer
+                  </button>
+                  <button
+                    onClick={() => setConfirmItem(null)}
+                    className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
+                  >
+                    Annuler
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
         </>
       )}
     </MainLayout>
