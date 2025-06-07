@@ -38,6 +38,9 @@ export default function MiniCart() {
   );
 
   if (location.pathname === "/cart") return null;
+  if (location.pathname === "/validation-commande") return null;
+  if (location.pathname === "/infos-client") return null;
+  if (location.pathname === "/commande-en-cours") return null;
 
   const getItemImage = (item) => {
     return item.image || `${process.env.PUBLIC_URL}/emogiesnack.png`;

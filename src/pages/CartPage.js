@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MainLayout from "../components/MainLayout";
 import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom"; // Ajoute si pas déjà fait
 // import defaultImage from `${process.env.PUBLIC_URL}/assets/emogiesnack.png`;
 // import sandwichsImg from "../assets/sandwish.jpg";
 // import tacosImg from "../assets/tacos.jpeg";
@@ -29,6 +30,7 @@ export default function Cart() {
 
   const { cart, removeFromCart, increaseQuantity, decreaseQuantity } =
     useCart();
+  const navigate = useNavigate(); // Ajoute si pas déjà fait
 
   const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -38,6 +40,7 @@ export default function Cart() {
   };
 
   const [confirmItem, setConfirmItem] = useState(null);
+  const [showSummary, setShowSummary] = useState(false); // Ajoute ce state
 
   return (
     <MainLayout>
@@ -121,12 +124,48 @@ export default function Cart() {
 
           <div className="text-right mt-8">
             <button
-              onClick={() => alert("Merci pour votre commande !")}
+              onClick={() => navigate("/validation-commande")}
               className="bg-green-700 text-white px-6 sm:px-8 py-3 rounded-full font-bold text-lg shadow-lg hover:bg-green-800 transition"
             >
               Passer la commande
             </button>
           </div>
+
+          {/* Modale de résumé de commande */}
+          {showSummary && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white p-6 rounded shadow-lg w-[95vw] max-w-lg text-center">
+                <h3 className="text-xl font-bold mb-4 text-green-700">
+                  Résumé de votre commande
+                </h3>
+                <ul className="mb-4 text-left">
+                  {cart.map((item) => (
+                    <li
+                      key={item.id}
+                      className="mb-2 flex justify-between items-center"
+                    >
+                      <span>
+                        <span className="font-semibold">{item.name}</span>
+                        <span className="text-gray-500"> x{item.quantity}</span>
+                      </span>
+                      <span className="text-green-700">{item.price} DH</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="font-bold text-lg mb-4">
+                  Montant total :{" "}
+                  <span className="text-green-800">{total} DH</span>
+                </div>
+                <button
+                  onClick={() => setShowSummary(false)}
+                  className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+                >
+                  Fermer
+                </button>
+              </div>
+            </div>
+          )}
+
           {confirmItem && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
               <div className="bg-white p-6 rounded shadow-lg w-80 text-center">

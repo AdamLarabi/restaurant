@@ -32,6 +32,9 @@ import Salades from "./pages/Salades";
 import MenusEnfants from "./pages/MenusEnfants";
 import Boissons from "./pages/Boisssons";
 import Supplements from "./pages/Supplements";
+import ValidationCommande from "./pages/ValidationCommande";
+import InfosClient from "./pages/InfosClient";
+import CommandeEnCours from "./pages/CommandeEnCours";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -89,6 +92,9 @@ const router = createBrowserRouter(
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/delivery" element={<DeliveryDetails />} />
+        <Route path="/validation-commande" element={<ValidationCommande />} />
+        <Route path="/infos-client" element={<InfosClient />} />
+        <Route path="/commande-en-cours" element={<CommandeEnCours />} />
 
         <Route path="*" element={<NotFound />} />
       </Route>
