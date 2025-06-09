@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from "react";
 import MainLayout from "../components/MainLayout";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function InfosClient() {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState(""); // Ajout du numéro de téléphone
+  const [phone, setPhone] = useState("");
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
-  // Récupérer la localisation approximative via IP
+  const navigate = useNavigate();
+  const locationn = useLocation();
+  const { cart, total } = locationn.state || {};
+
+  //   useEffect(() => {
+  //     console.log("🛒 Cart reçu :", cart);
+  //     console.log("💰 Total reçu :", total);
+  //   }, [cart, total]);
+
   useEffect(() => {
-    fetch("https://ipapi.co/json/")
+    fetch("https://ipinfo.io/json?token=7dbb14ac3edfca")
       .then((res) => res.json())
       .then((data) => {
         setLocation(
-          `${data.city || ""}, ${data.region || ""}, ${data.country_name || ""}`
+          `${data.city || ""}, ${data.region || ""}, ${data.country || ""}`
         );
         setLoading(false);
       })
@@ -24,7 +31,21 @@ export default function InfosClient() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/commande-en-cours", { state: { name, phone, location } });
+
+    if (!cart?.length) {
+      alert("Panier vide. Impossible de continuer.");
+      return;
+    }
+
+    navigate("/commande-en-cours", {
+      state: {
+        name,
+        phone,
+        location,
+        orderDetails: cart,
+        total,
+      },
+    });
   };
 
   return (

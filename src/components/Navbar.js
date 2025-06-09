@@ -6,10 +6,12 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
+  // Ajout du lien "Suivi commande"
   const Links = [
     { name: "Accueil", link: "/" },
     { name: "Catégories", link: "/categories" },
     { name: "Panier", link: "/cart" },
+    { name: "Suivi commande", link: "/mes-commandes" },
   ];
 
   return (

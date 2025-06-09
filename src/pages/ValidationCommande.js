@@ -38,7 +38,14 @@ export default function ValidationCommande() {
           Montant total : <span className="text-green-800">{total} DH</span>
         </div>
         <button
-          onClick={() => navigate("/infos-client")}
+          onClick={() =>
+            navigate("/infos-client", {
+              state: {
+                cart: cart,
+                total: total,
+              },
+            })
+          }
           className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-full shadow-lg transition"
         >
           Valider la commande

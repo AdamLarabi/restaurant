@@ -50,5 +50,7 @@
   "devDependencies": {
     "@types/js-cookie": "^3.0.6",
     "tailwindcss": "^3.4.10"
-  }
+  },
+  "proxy": "http://restaurant-api-try.mooo.com/"
+
 }

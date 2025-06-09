@@ -39,6 +39,8 @@ import CommandeEnCours from "./pages/CommandeEnCours";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
+import AdminCommandes from "./pages/AdminCommandes";
+import SuiviCommande from "./pages/SuiviCommande";
 
 const Layout = () => (
   <div className="flex flex-col min-h-screen">
@@ -95,6 +97,8 @@ const router = createBrowserRouter(
         <Route path="/validation-commande" element={<ValidationCommande />} />
         <Route path="/infos-client" element={<InfosClient />} />
         <Route path="/commande-en-cours" element={<CommandeEnCours />} />
+        <Route path="/admin/commandes" element={<AdminCommandes />} />
+        <Route path="/mes-commandes" element={<SuiviCommande />} />
 
         <Route path="*" element={<NotFound />} />
       </Route>
