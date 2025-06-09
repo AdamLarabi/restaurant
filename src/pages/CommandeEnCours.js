@@ -29,7 +29,7 @@ export default function CommandeEnCours() {
       setIsSending(true);
 
       axios
-        .post("/api/order_store.php", {
+        .post("http://restaurant-api-try.mooo.com/api/order_store.php", {
           client_name: name,
           client_phone: phone,
           location: userLocation,
